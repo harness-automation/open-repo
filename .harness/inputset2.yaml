@@ -1,0 +1,23 @@
+inputSet:
+  name: inputset2
+  tags: {}
+  identifier: inputset2
+  orgIdentifier: default
+  projectIdentifier: TF_InputSet_Pipeline_Test
+  pipeline:
+    identifier: DoNotDeletePipeline
+    stages:
+      - stage:
+          identifier: s1
+          type: Custom
+          spec:
+            execution:
+              steps:
+                - step:
+                    identifier: ShellScript_1
+                    type: ShellScript
+                    spec:
+                      source:
+                        type: Inline
+                        spec:
+                          script: echo world
