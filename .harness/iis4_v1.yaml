@@ -1,6 +1,0 @@
-template:
-  name: iis4
-  identifier: iis4
-  versionLabel: v1
-  type: Stage
-  tags: {}
