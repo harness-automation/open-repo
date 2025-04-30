@@ -1,0 +1,27 @@
+inputSet:
+  name: diffRepoInp2
+  tags: {}
+  identifier: diffRepoInp2
+  orgIdentifier: default
+  projectIdentifier: Fardeen
+  pipeline:
+    identifier: testRemPip
+    stages:
+      - stage:
+          identifier: stg
+          type: Custom
+          spec:
+            execution:
+              steps:
+                - step:
+                    identifier: ShellScript_1
+                    type: ShellScript
+                    spec:
+                      source:
+                        type: Inline
+                        spec:
+                          script: echo "diff repo 2"
+  cacheResponse:
+    cacheState: VALID_CACHE
+    ttlLeft: 258943691
+    lastUpdatedAt: 1691068919601

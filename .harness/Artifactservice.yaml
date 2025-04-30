@@ -1,0 +1,36 @@
+service:
+  name: Artifact-service
+  identifier: Artifactservice
+  orgIdentifier: default
+  projectIdentifier: V
+  serviceDefinition:
+    spec:
+      artifacts:
+        primary:
+          primaryArtifactRef: <+input>
+          sources:
+            - spec:
+                connectorRef: awstest
+                bucketName: <+input>
+                region: us-east-1
+                filePath: <+input>
+                fileFilter: ""
+              identifier: S3
+              type: AmazonS3
+            - spec:
+                connectorRef: GCP_CONNECTOR
+                project: <+input>
+                bucket: <+input>
+                artifactPath: <+input>
+              identifier: GCS
+              type: GoogleCloudStorage
+            - spec:
+                connectorRef: ACP_CONNECTOR
+                tag: <+input>
+                digest: ""
+                subscriptionId: <+input>
+                registry: <+input>
+                repository: <+input>
+              identifier: ACR
+              type: Acr
+    type: Ssh

@@ -1,0 +1,19 @@
+service:
+  name: docker-remote
+  identifier: dockerremote
+  orgIdentifier: default
+  projectIdentifier: V
+  serviceDefinition:
+    spec:
+      artifacts:
+        primary:
+          primaryArtifactRef: <+input>
+          sources:
+            - spec:
+                connectorRef: dockerprivate
+                imagePath: library/nginx
+                tag: stable-bullseye
+                digest: ""
+              identifier: a1
+              type: DockerRegistry
+    type: Kubernetes

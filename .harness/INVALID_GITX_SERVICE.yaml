@@ -1,0 +1,26 @@
+service:
+  identifier: INVALID_GITX_SERVICE
+  name: INVALID GITX SERVICE
+  serviceDefinition:
+    spec:
+      artifacts:
+        primary:
+          primaryArtifactRef: <+input>
+          sources:
+            - spec:
+                connectorRef: awstest
+                imagePath: hello-world
+                tag: 2024.02.02-12.05.36-6a5d7f0
+                digest: ""
+                region: us-east-1
+              identifier: a1
+              type: Ecr
+      variables:
+        - name: abc
+          type: Secret
+          description: ""
+          required: false
+          value: <+input>
+    type: Kubernetes
+  orgIdentifier: default
+  projectIdentifier: V

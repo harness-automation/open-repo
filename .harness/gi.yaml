@@ -1,0 +1,131 @@
+pipeline:
+  name: gi
+  identifier: gi
+  projectIdentifier: V
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: sta
+        identifier: sta
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: Elastigroup
+          service:
+            serviceRef: AMI_SERVICE
+            serviceInputs:
+              serviceDefinition:
+                type: Elastigroup
+                spec:
+                  artifacts:
+                    primary:
+                      primaryArtifactRef: <+input>
+                      sources: <+input>
+          environment:
+            environmentRef: ENV
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: ESG_INFRA
+          execution:
+            steps:
+              - step:
+                  name: Elastigroup Setup
+                  identifier: Elastigroup_Setup
+                  type: ElastigroupSetup
+                  timeout: 10m
+                  spec:
+                    name: <+project.identifier>_<+service.identifier>_<+env.identifier>
+                    instances:
+                      type: Fixed
+                      spec:
+                        min: 1
+                        max: 2
+                        desired: 2
+                  failureStrategies: []
+              - step:
+                  type: ElastigroupDeploy
+                  name: Elastigroup Canary Deploy
+                  identifier: Elastigroup_Canary_Deploy
+                  spec:
+                    newService:
+                      type: Count
+                      spec:
+                        count: 1
+                  timeout: 15m
+              - step:
+                  type: ElastigroupDeploy
+                  name: Elastigroup Deploy
+                  identifier: Elastigroup_Deploy
+                  spec:
+                    newService:
+                      type: Percentage
+                      spec:
+                        percentage: 100
+                  timeout: 15m
+            rollbackSteps:
+              - step:
+                  name: Elastigroup Rollback
+                  identifier: Elastigroup_Rollback
+                  type: ElastigroupRollback
+                  timeout: 10m
+                  spec: {}
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
+    - stage:
+        name: sssssssss
+        identifier: sssssssss
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: AzureWebApp
+          service:
+            serviceRef: AZURE_SERVICE
+            serviceInputs:
+              serviceDefinition:
+                type: AzureWebApp
+                spec:
+                  artifacts:
+                    primary:
+                      primaryArtifactRef: <+input>
+                      sources: <+input>
+          environment:
+            environmentRef: ENV
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: AZURE_WEB_APPS_INFRA
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo hi
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+            rollbackSteps:
+              - step:
+                  name: WebApp rollback
+                  identifier: webAppRollback
+                  type: AzureWebAppRollback
+                  timeout: 20m
+                  spec: {}
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
