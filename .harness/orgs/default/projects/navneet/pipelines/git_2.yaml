@@ -1,0 +1,53 @@
+pipeline:
+  name: git2
+  identifier: git2
+  projectIdentifier: navneet
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: hi
+        identifier: hi
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo hi
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
+    - stage:
+        name: fail
+        identifier: fail
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: exit 1
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
