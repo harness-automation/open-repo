@@ -15,7 +15,7 @@ service:
               store:
                 type: Http
                 spec:
-                  connectorRef: account.github_Account_level_connector
+                  connectorRef: org.HttpHelmConnectorForAutomationTest
               chartName: nginx
               chartVersion: <+input>
               subChartPath: ""
