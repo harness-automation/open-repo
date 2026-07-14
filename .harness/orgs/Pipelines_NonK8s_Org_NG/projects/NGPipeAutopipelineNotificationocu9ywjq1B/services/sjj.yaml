@@ -1,0 +1,5 @@
+service:
+  name: sjj
+  identifier: sjj
+  orgIdentifier: Pipelines_NonK8s_Org_NG
+  projectIdentifier: NGPipeAutopipelineNotificationocu9ywjq1B
