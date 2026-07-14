@@ -1,0 +1,5 @@
+service:
+  name: s1
+  identifier: s1
+  orgIdentifier: DoNotDeleteTriggerOrg
+  projectIdentifier: CDCNGAuto_GithubHTTPSTrigger_Nl2MjEAiDI
