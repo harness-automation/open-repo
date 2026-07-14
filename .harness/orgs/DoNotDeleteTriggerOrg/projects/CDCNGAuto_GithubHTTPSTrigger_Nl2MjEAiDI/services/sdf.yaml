@@ -4,5 +4,22 @@ service:
   orgIdentifier: DoNotDeleteTriggerOrg
   projectIdentifier: CDCNGAuto_GithubHTTPSTrigger_Nl2MjEAiDI
   serviceDefinition:
-    spec: {}
+    spec:
+      manifests:
+        - manifest:
+            identifier: mnfst
+            type: HelmChart
+            spec:
+              store:
+                type: Http
+                spec:
+                  connectorRef: account.github_Account_level_connector
+              optionalValuesYaml: false
+              chartName: todolist
+              chartVersion: <+input>
+              subChartPath: ""
+              helmVersion: V3
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+              fetchHelmChartMetadata: false
     type: NativeHelm
