@@ -3,3 +3,23 @@ service:
   identifier: remote_svc_1
   orgIdentifier: default
   projectIdentifier: Aakash_test_project
+  serviceDefinition:
+    spec:
+      manifests:
+        - manifest:
+            identifier: mnfst
+            type: HelmChart
+            spec:
+              store:
+                type: Http
+                spec:
+                  connectorRef: org.HttpHelmBitnamiConnectorForAutomationTest
+              optionalValuesYaml: false
+              chartName: todolist
+              chartVersion: <+input>
+              subChartPath: ""
+              helmVersion: V3
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+              fetchHelmChartMetadata: false
+    type: NativeHelm
