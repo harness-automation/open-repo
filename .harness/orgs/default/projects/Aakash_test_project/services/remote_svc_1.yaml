@@ -1,0 +1,5 @@
+service:
+  name: remote svc 1
+  identifier: remote_svc_1
+  orgIdentifier: default
+  projectIdentifier: Aakash_test_project
