@@ -1,0 +1,19 @@
+template:
+  group:
+    steps:
+      - name: stepGroupRemote
+        id: stepGroupRemote
+        group:
+          steps:
+            - name: parallel_group_e155
+              id: parallel_group_e155
+              parallel:
+                steps:
+                  - name: run1
+                    run:
+                      script: echo 'run1'
+                    id: run1
+                  - name: run2
+                    run:
+                      script: echo 'run2'
+                    id: run2
